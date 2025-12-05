@@ -10,7 +10,7 @@ public class Wordle {
     // Hint: Pick a random index between 0 and dict.length (not including) using Math.random()
     public static String chooseSecretWord(String[] dict) {
         int length = dict.length;
-        int rndIndex = (int) (Math.random() * (length + 1));
+        int rndIndex = (int) (Math.random() * (length));
         return dict[rndIndex];
         //return dict[(int) (Math.random() * (dict.length + 1))];
     }
@@ -150,7 +150,8 @@ public class Wordle {
         }
 
         if (!won) {
-            // ... follow the assignment examples for how the printing should look like
+            System.out.println("Sorry, you did not guess the word.\n The secret word was: " + secret);
+            
         }
 
         inp.close();
