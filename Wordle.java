@@ -110,32 +110,24 @@ public class Wordle {
             boolean valid = false;
 
             // Loop until you read a valid guess
-            while (!valid) {
+             while (!valid) {
                 System.out.print("Enter your guess (5-letter word): ");
                 guess = inp.readString().toUpperCase();
-                if (guess.length()==WORD_LENGTH) {
-                    for(int i=0;i<dict.length;i++){
-                        if (guess.equals(dict[i])) {
-                            valid = true;  
-                        }
-                    }
-                   if (!valid){
-                    System.out.println("Invalid word. Please try again.");
 
-                   }
-                } 
-                else {
+                if (guess.matches("[A-Z]{5}")) {
+                    valid = true;
+                } else {
                     System.out.println("Invalid word. Please try again.");
-                    }
+                }
             }
+
+            // Store and compute feedback
             storeGuess(guess, guesses, attempt);
+
+            // initialize result row to '_' for stability
+            for (int j = 0; j < WORD_LENGTH; j++) results[attempt][j] = '_';
+
             computeFeedback(secret, guess, results[attempt]);
-
-
-
-
-            // Store guess and compute feedback
-            // ... use storeGuess and computeFeedback
 
             // Print board
             printBoard(guesses, results, attempt);
@@ -151,8 +143,7 @@ public class Wordle {
 
         if (!won) {
             System.out.println("Sorry, you did not guess the word");
-            System.out.println("The secret word was: " + secret); 
-            
+            System.out.println("The secret word was: " + secret);
         }
 
         inp.close();
