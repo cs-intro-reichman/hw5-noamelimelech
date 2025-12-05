@@ -109,7 +109,6 @@ public class Wordle {
             String guess = "";
             boolean valid = false;
 
-            // Loop until you read a valid guess
              while (!valid) {
                 System.out.print("Enter your guess (5-letter word): ");
                 guess = inp.readString().toUpperCase();
@@ -121,18 +120,14 @@ public class Wordle {
                 }
             }
 
-            // Store and compute feedback
             storeGuess(guess, guesses, attempt);
 
-            // initialize result row to '_' for stability
             for (int j = 0; j < WORD_LENGTH; j++) results[attempt][j] = '_';
 
             computeFeedback(secret, guess, results[attempt]);
 
-            // Print board
             printBoard(guesses, results, attempt);
 
-            // Check win
             if (isAllGreen(results[attempt])) {
                 System.out.println("Congratulations! You guessed the word in " + (attempt + 1) + " attempts.");
                 won = true;
